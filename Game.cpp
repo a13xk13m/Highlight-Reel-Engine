@@ -22,7 +22,7 @@ int Coords::getH() {
 
 // Constructor
 Game::Game() {
-	this->initCoordData();
+	this->initCoordData(1920, 1080);
 };
 
 // Updates the killfeed coordinates.

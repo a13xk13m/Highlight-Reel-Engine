@@ -23,8 +23,6 @@ struct Coords {
 // Class to hold game specific data.
 class Game {
 	private:
-		// Private, useless onstructor.
-		Game();
 		// Killfeed coordinates.
 		Coords kfCoords;
 		// Mapping of all games and aspect ratios.
@@ -33,6 +31,8 @@ class Game {
 		void initCoordData(int x, int w);
 
 	public:
+		// Useless constructor.
+		Game();
 		// Constructor that takes a game and an aspect ratio and sets the coordinates based on the resolution.
 		Game(std::string game, std::string aspect, int x, int y);
 		// Updates the killfeed coords.
