@@ -31,20 +31,22 @@ void Game::updateKFCoords(Coords& coords) {
 }
 
 // Initializes all game coordinate data.
-void Game::initCoordData() {
+void Game::initCoordData(int x, int y) {
 	// Initialize siege aspect ratios.
-	std::unordered_map < const char*, Coords > siegeAspectRatios = {
-		{"4:3", Coords(1500, 365, 400, 25)}
+	// Decimal values are relative values of kill feed location in order to support
+	// multiple resolutions.
+	std::unordered_map < std::string, Coords > siegeAspectRatios = {
+		{"4:3", Coords(0.78125 * x, 0.33796 * y, 0.20833 * x, 0.02314 * y)}
 	};
 
-	this->mapping.insert(std::pair<const char*, std::unordered_map<const char*, Coords>>("siege", siegeAspectRatios));
+	this->mapping.insert(std::pair<std::string, std::unordered_map<std::string, Coords>>("siege", siegeAspectRatios));
 }
 
 // Creates a game object with the correct coordinates.
-Game::Game(std::string game, std::string aspect) {
-	this->initCoordData();
+Game::Game(std::string game, std::string aspect, int x, int y) {
+	this->initCoordData(x, y);
 	// Goes through the mapping and sets the proper coordinates.
-	this->kfCoords = this->mapping.at(game.c_str()).at(aspect.c_str());
+	this->kfCoords = this->mapping.at(game).at(aspect);
 }
 
 // Returns the killfeed coordinates.

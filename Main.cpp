@@ -25,6 +25,6 @@ int main() {
     std::cout << "Aspect ratio ('4:3'): ";
     std::cin >> aspectRatio;
     std::cout << std::endl;
-    Game g(gameName, aspectRatio);
+    Game g(gameName, aspectRatio, 1920, 1080);
     Video::processVideo(cap, g, username);
 }
