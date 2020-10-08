@@ -4,7 +4,7 @@ Output::Output(cv::VideoCapture* capture) {
 	this->cap = capture;
 }
 //Trims the video and then outputs it to a seperate file.
-bool Output::trimVideo(int startFrame, int frameCount, int vidIndex) {
+bool Output::trimVideo(int startFrame, int frameCount, int vidIndex, std::string outputPath) {
 	double fps = this->cap->get(cv::CAP_PROP_FPS);
 	int width = (int)this->cap->get(cv::CAP_PROP_FRAME_WIDTH);
 	int height = (int)this->cap->get(cv::CAP_PROP_FRAME_HEIGHT);
@@ -19,7 +19,7 @@ bool Output::trimVideo(int startFrame, int frameCount, int vidIndex) {
 	// Open output video files        
 	cv::VideoWriter vidwriter;
 	int codec = cv::VideoWriter::fourcc('X', '2', '6', '4');
-	std::string vidName("clip_" + std::to_string(vidIndex) + ".mp4");
+	std::string vidName(outputPath + "clip_" + std::to_string(vidIndex) + ".mp4");
 	vidwriter.open(vidName, codec, fps, imgSize, true);
 	if (!vidwriter.isOpened())
 	{

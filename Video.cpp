@@ -16,7 +16,7 @@ namespace Video {
     }
 
     // Video processing and trimming.
-    void processVideo(cv::VideoCapture* video, Game& game, std::string name) {
+    void processVideo(cv::VideoCapture* video, Game& game, std::string name, std::string outputPath) {
         Recognition r = Recognition();
         // Video information
         double fps = video->get(cv::CAP_PROP_FPS);
@@ -54,7 +54,7 @@ namespace Video {
             std::cout << nameFound << std::endl;
             std::cout << startFrame << std::endl;
             if (nameFound) {
-                o.trimVideo(startFrame, 120, vidIndex);
+                o.trimVideo(startFrame, 120, vidIndex, outputPath);
                 vidIndex++;
             }
             crop.release();

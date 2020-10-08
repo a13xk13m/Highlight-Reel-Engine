@@ -5,26 +5,15 @@
 #include "Game.h"
 
 // Main loop
-int main() {
+// Arguments, in order: filepath, outputpath username, name of game, aspect ratio, width, height
+int main(int argc, char** argv) {
     // Get the name of the file.
-    std::string fileName;
-    std::cout << "File name: ";
-    std::cin >> fileName;
-    std::cout << std::endl;
+    std::string fileName = argv[1];
+    std::string outputPath = argv[2];
+    std::string username = argv[3];
+    std::string gameName = argv[4];
+    std::string aspectRatio = argv[5];
     cv::VideoCapture* cap = new cv::VideoCapture(fileName);
-    // Get the username of the player.
-    std::cout << "\nUsername to trim clips for: ";
-    std::string username;
-    std::getline(std::cin, username);
-    std::cout << std::endl;
-    std::string gameName;
-    std::cout << "Game name ('siege'): ";
-    std::cin >> gameName;
-    std::cout << std::endl;
-    std::string aspectRatio;
-    std::cout << "Aspect ratio ('4:3'): ";
-    std::cin >> aspectRatio;
-    std::cout << std::endl;
-    Game g(gameName, aspectRatio, 1920, 1080);
-    Video::processVideo(cap, g, username);
+    Game g(gameName, aspectRatio, atoi(argv[6]), atoi(argv[7]));
+    Video::processVideo(cap, g, username, outputPath);
 }

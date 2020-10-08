@@ -9,5 +9,5 @@ class Output {
 		// Constructor takes a reference to the target video that will be trimmed.
 		Output(cv::VideoCapture* capture);
         //Trims the video and then outputs it to a seperate file.
-		bool trimVideo(int startFrame, int frameCount, int vidIndex);
+		bool trimVideo(int startFrame, int frameCount, int vidIndex, std::string outputPath);
 };
